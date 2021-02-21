@@ -1,0 +1,5 @@
+<?php
+
+renderBlock('base/header',  [
+
+    ]);

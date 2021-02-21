@@ -1,0 +1,72 @@
+<!-- #delivery-popup -->
+<div id="delivery-popup" class="popup" style="display: none">
+	<h2 class="section-title">Выберите адрес доставки</h2>
+	<div class="row delivery_block">
+		<div class="col-xl-4 col-lg-5 col-md-6">
+			<h3 class="section-title">Адрес доставки:</h3>
+			<label class="checkbox"><input type="checkbox" checked><i></i>Совпадает с юридическим адресом</label>
+			<div class="personal_data__info">
+				<div class="personal_data__field">
+					<label>Город:</label>
+					<select class="select">
+						<option value="1">Челябинск</option>
+						<option value="2">Челябинск</option>
+						<option value="3">Lorem ipsum dolor sit amet consectetur a </option>
+						<option value="4">Челябинск</option>
+						<option value="5">Челябинск</option>
+					</select>
+				</div>
+				<div class="personal_data__field">
+					<label>Улица:</label>
+					<input type="text" class="form_input" value="Степная">
+				</div>
+				<div class="personal_data__field">
+					<label>Дом:</label>
+					<input type="text" class="form_input" value="4">
+				</div>
+				<div class="personal_data__field">
+					<label>Квартира:</label>
+					<input type="text" class="form_input" value="2">
+				</div>
+				<div class="personal_data__field">
+					<label>Индекс:</label>
+					<input type="text" class="form_input" value="454012">
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-8 col-lg-7 col-md-6">
+			<div class="delivery_block__map" id="map"></div>
+			<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+			<script>
+				ymaps.ready(init);
+				var myMap, myPlacemark;
+
+				function init() {
+					myMap = new ymaps.Map("map", {
+						center: [55.18197606952201, 61.45461999999999],
+						zoom: 16,
+						controls: ['fullscreenControl', 'zoomControl']
+
+					});
+					myPlacemark = new ymaps.Placemark([55.18197606952201, 61.45461999999999], {
+						hintContent: 'г. Челябинск, ул. Бажова 91',
+						balloonContent: 'г. Челябинск, ул. Бажова 91'
+					}, {
+						iconLayout: 'default#image',
+						iconImageHref: 'img/placemark.svg',
+						iconImageSize: [33, 36],
+						iconImageOffset: [-16.5, -36]
+					});
+					myMap.geoObjects.add(myPlacemark);
+					myMap.behaviors.disable('scrollZoom');
+				}
+			</script>
+		</div>
+		<div class="col-auto mx-auto mt-4">
+			<button class="btn btn-bordered-blue" data-fancybox data-src="#payment-popup">Перейти к способу оплаты<svg width="18" height="18" class="svg-ico ml-3 mr-0">
+					<use xlink:href="img/sprite.svg#ico-next"></use>
+				</svg></button>
+		</div>
+	</div>
+</div>
+

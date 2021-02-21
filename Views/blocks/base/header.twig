@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>ATLAS Group</title>
+    <meta name="description" content="DECBASE">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="{{ common.faveicon.url }}">
+    {{ wp_head() }}
+</head>
+
+<body>
+<div id="page-wrap">
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 col-auto">
+                        <a href="{{ link }}" class="header__logo">
+                            <img src="{{ common.logo.url }}" alt="{{ common.logo.alt }}" width="165">
+                            <p>{{ header.text_first_column  | raw }}</p>
+                        </a>
+                    </div>
+                    <div class="col-2 header__note">
+                        {{ header.text_second_column  | raw }}
+                    </div>
+                    <div class="col">
+                        <div class="header__right">
+                            <div class="header__location">
+                                <p>Ваш город</p>
+                                <a href="#" class="header__location__current current_city">Челябинск</a>
+
+
+                            </div>
+                            <div class="header__email">
+                                <p>Контактный E-mail</p>
+                                <p><a class="change_email" href="mailto:{{ common.email.out }}">{{ common.email.out }}</a>
+                            </div>
+                            <div class="header__right__last">
+                                <a href="{{ cart_url }}" class="header__cart">
+                                    <span class="label _basket_price" data-currency="{{ currency }}"  data-empty="Корзина пуста">{% if cart_price != 0 %}{{ cart_price }} &nbsp {{ currency }}{% else %}Корзина пуста{% endif %}</span>
+                                    <span class="header__cart__btn">
+                                    <svg width="20" height="20" class="svg-ico">
+                                        <use xlink:href="{{ public_dir() }}img/sprite.svg#ico-cart"></use>
+                                    </svg>
+                      <span class="cnt _basket_count">{{ cart_count_items }}</span>
+                    </span>
+                                </a>
+                                <a href="tel:{{ common.phone }}" class="change_phone header__tel">{{ common.phone }}</a>
+                            </div>
+                            <button class="header__bars d-lg-none"><span></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="location_popup">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <div class="section-title">Выберите город:</div>
+                        </div>
+                        <div class="col-auto">
+                            <button class="location_popup__close">
+                                <svg width="20" height="20" class="svg-ico">
+                                    <use xlink:href="{{ public_dir() }}img/sprite.svg#ico-close"></use>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="location_popup__list">
+
+                        {% for key,item in cities %}
+                            <div class="location_popup__itm">
+                                <h4 class="location_popup__col_title">{{ key }}</h4>
+                                <ul>
+                                    {% for city in item %}
+                                        <li><a href="#" class="change_city"
+                                               data-address="{{ city.address }}"
+                                                data-phone="{{ city.phone }}"
+                                               data-email="{{ city.email }}"
+                                               data-mapX="{{ city.map.x }}"
+                                               data-mapY="{{ city.map.y }}"
+                                               data-mapCaption="{{ city.map.caption }}"
+                                            >{{ city.city }}</a></li>
+                                    {% endfor %}
+
+                                </ul>
+                            </div>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header__bot">
+            <div class="container">
+                <nav class="header__nav">
+                    <ul>
+                        {% for item in header.menu %}
+                            <li class="{% if item.link.title == 'Каталог' %}catalog-itm{% endif %} {% if current_title == item.link.title  %} current {% endif %}" >
+                                <a href="{% if current_title == item.link.title  %} # {% else %} {{ item.link.url }} {% endif %}" {% if target %}target="_blank" {% endif %}>{{ item.link.title }}</a>
+                                {% if item.link.title == 'Каталог' %}
+                                    <div class="header__nav_catalog">
+                                    <ul>
+                                        {% for i in categories %}
+                                            <li>
+                                            <a href="#">
+                                                <img width="25" height="25" src="{{ i.term.icon.url }}" alt="">
+{#                                                <svg width="22" height="22" class="svg-ico">#}
+{#                                                    <image href="{{ i.term.icon.url }}"></image>#}
+{#                                                </svg>#}
+                                                {{ i.term.title }}</a>
+                                            <ul>
+                                                {% for ii in i.children %}
+                                                    <li>
+                                                    <a href="{{ ii.term.link }}">{{ ii.term.title }}</a>
+                                                        {% if ii.children %}
+                                                            <ul>
+                                                                {% for iii in ii.children %}
+
+                                                                    <li><a href="{{ iii.term.link }}">{{ iii.term.title }}</a></li>
+                                                                {% endfor %}
+                                                            </ul>
+                                                        {% endif %}
+
+                                                </li>
+                                                {% endfor %}
+
+                                            </ul>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                    <div class="d-md-none">
+{#                        <a href="#" class="btn btn-red btn-tab"><svg width="18" height="18" class="svg-ico">#}
+{#                                <use xlink:href="img/sprite.svg#ico-user"></use>#}
+{#                            </svg>Войти в кабинет</a>#}
+                        <a href="#" data-fancybox data-src="#callback" class="btn btn-blue btn-tab">
+                            <svg width="18" height="18" class="svg-ico">
+                                <use xlink:href="{{ public_dir() }}img/sprite.svg#ico-order"></use>
+                            </svg>
+                            Отправить заявку на подбор
+                        </a>
+                        <p>
+                            <a href="tel:{{ common.phone }}" class="change_phone header__tel">{{ common.phone }}</a>
+                        </p>
+                        <div class="header__location">
+                            <p>Ваш город</p>
+                            <a href="#" class="header__location__current current_city">Челябинск</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="header__bot__btns">
+{#                    <a href="#" class="btn btn-red btn-tab"><svg width="18" height="18" class="svg-ico">#}
+{#                            <use xlink:href="img/sprite.svg#ico-user"></use>#}
+{#                        </svg>Войти в кабинет</a>#}
+                    <a href="#" data-fancybox data-src="#callback" class="btn btn-blue btn-tab"><svg width="18" height="18" class="svg-ico">
+                            <use xlink:href="{{ public_dir() }}img/sprite.svg#ico-order"></use>
+                        </svg>Отправить заявку на подбор</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="callback" class="popup" style="display: none">
+        <h2 class="section-title">Введите имя и номер телефона</h2>
+        <form action="" class="_form">
+            <div class="personal_data__field">
+                <input type="text" data-name="name" class="form_input" placeholder="Имя">
+            </div>
+            <div class="personal_data__field">
+                <input type="tel" data-name="phone" class="form_input" placeholder="Номер телефона">
+            </div>
+            <input type="hidden" data-title="Страница с которой отправленна заявка"  data-name="url" value="{{ current_url() }}">
+            <input type="hidden" data-title="Форма:"  data-name="type" value="{{ form_settings().header.title }}">
+            <button class="btn btn-bordered-blue send">
+                Отправить
+                <svg width="18" height="18" class="svg-ico ml-3 mr-0">
+                    <use xlink:href="{{ public_dir() }}img/sprite.svg#ico-next"></use>
+                </svg>
+            </button>
+            <div class="response">{{ form_settings().header.response }}</div>
+        </form>
+    </div>
+

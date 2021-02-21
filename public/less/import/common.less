@@ -1,0 +1,273 @@
+
+
+header{
+  .header__nav{
+    .catalog-itm{
+
+      .header__nav_catalog{
+        &>ul{
+          li{
+
+            a{
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              img{
+                margin-right: 15px;
+                filter:grayscale(1);
+              }
+            }
+            &:hover{
+              a{
+
+                img{
+                  filter:none;
+                  animation-duration: 1s;
+                }
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
+
+#callback{
+  max-width: 400px;
+  button{
+    display: block;
+    margin: 0 auto;
+  }
+}
+._search_form_wrapper {
+  position: relative;
+  .home_catalog__filter__response {
+    display: none;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(255,255,255,0.8);
+    z-index: 9;
+    padding: 10px;
+    top: 105px;
+    box-shadow: 0 2px 9px 0 rgba(0,0,0,.03);
+    border-radius: 6px;
+    max-height: 300px;
+    min-height: 100px;
+    overflow-y: scroll;
+    border:3px solid rgba(228,31,35,0.5);
+
+    .close {
+      position: absolute;
+      right: 10px;
+      top:10px;
+      width: 32px;
+      height: 32px;
+      opacity: 0.3;
+      cursor: pointer;
+      &:hover {
+        opacity: 1;
+      }
+      &:before,&:after{
+        position: absolute;
+        left: 15px;
+        content: ' ';
+        height: 33px;
+        width: 2px;
+        background-color: #333;
+      }
+      &:before{
+        transform: rotate(45deg);
+      }
+      &:after{
+        transform: rotate(-45deg);
+      }
+    }
+
+    .item{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 10px;
+      .img{
+        width: 70px;
+        //height: 50px;
+        margin-right: 25px;
+        img{
+          max-width: 100%;
+        }
+      }
+      .title{
+        font-weight: 700;
+        font-size: 14px;
+        font-family: Montserrat, sans-serif;
+        line-height: 20px;
+        &:hover{
+          color: #e41f23;
+          transition-duration: 0.8s;
+        }
+      }
+    }
+  }
+}
+
+
+.home_catalog__nav{
+  a.home_catalog__nav__btn{
+    img{
+      filter: grayscale(1);
+      margin-right: 20px;
+
+    }
+    &:hover{
+      img{
+        filter:none;
+      }
+    }
+    &.active{
+      img{
+        filter:none;
+      }
+    }
+  }
+
+}
+
+._btn_load_more{
+  display: block ;
+  margin:10px auto;
+  .ring {
+    width: 10px;
+    height: 10px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 5px dashed #ffffff;
+    border-radius: 100%;
+    display: none;
+  }
+  .ring{
+    animation:loadingD  1.5s 0.3s cubic-bezier(0.17, 0.37, 0.43, 0.67) infinite;
+  }
+  .text{
+    display: inline-block;
+  }
+  &.load{
+    .ring{
+      display:block;
+    }
+    .text
+    {
+      display: none;
+    }
+  }
+}
+
+@keyframes loadingD {
+  0%{
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.catalog {
+  .catalog__header__filter{
+    display: none;
+  }
+
+  .section-title{
+    margin: 10px 0;
+  }
+}
+
+
+.header__nav .current
+{
+  color: #56698f;
+  &:hover{
+    a{
+      color: #56698f;
+    }
+  }
+}
+
+.footer__nav .current
+{
+  //border-bottom-color: #fff;
+  a{
+    border-bottom-color: #fff;
+  }
+  &:hover{
+    a{
+      border-bottom-color: #fff;
+    }
+  }
+}
+
+.cart__table .shadow{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+  background-color: rgba(0,0,0,0.6);
+  color: #ffffff;
+  font-size: 25px;
+}
+
+.cart__table.load .shadow {
+  display: flex;
+}
+
+#order-popup{
+  .shadow{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 99;
+    color: #ffff;
+    font-size: 25px;
+  }
+  &.compleate{
+    .shadow{
+      display: flex;
+    }
+  }
+}
+
+form._form{
+  position: relative;
+  .response {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(86, 105, 143,0.8);
+    left: 0;
+    top: 0;
+    color: #ffffff;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 25px;
+  }
+
+}
+
+
+@media  screen and (max-width: 767px){
+  .question .btn{
+    bottom: -65px !important;
+  }
+}

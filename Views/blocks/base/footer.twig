@@ -1,0 +1,43 @@
+<footer class="footer">
+    <div class="footer__top">
+        <div class="container">
+            <div class="d-flex flex-xl-nowrap flex-lg-wrap flex-md-nowrap flex-wrap justify-content-between">
+                <nav class="footer__nav">
+                    <ul>
+                        {% for item in footer.menu %}
+                            <li {% if current_title == item.link.title  %} class="current" {% endif %} >
+                                <a href="{% if current_title == item.link.title  %}#{% else %}{{ item.link.url }}{% endif %}"{% if item.link.target %} target="_blank" {% endif %}>{{ item.link.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+                <div class="footer__contacts">
+                    <a href="mailto:{{ common.email.out }}" class="change_email">{{ common.email.out }}</a>
+                    <a href="tel:{{ common.phone }}" class="change_phone">{{ common.phone }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer__bot">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="footer__copyright">{{ footer.description }}</p>
+                </div>
+                <div class="col-auto">
+                    <a href="#" data-fancybox data-src="#personal_policy">Политика обработки персональных данных</a>
+                </div>
+                <div class="col d-none d-lg-block">
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+<!-- #personal_policy -->
+<div id="personal_policy" class="popup" style="display: none">
+    {{ footer.personal_policy }}
+</div>
+{{ wp_footer() }}
+</body>
+
+</html>
