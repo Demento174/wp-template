@@ -5,16 +5,26 @@ return
         'data'=>
             [
                 [
-                    'src'=>'/js/index.js',
+                    'src'=>'/js/main.js',
                     'deps'=>null,
                     'ver'=>null,
-                    'in_footer'=>false,
+                    'in_footer'=>true,
+                    'external_link'=>false
                 ],
-//                [
-//                    'src'=>'/less/style.less',
-//                    'deps'=>null,
-//                    'ver'=>null,
-//                    'media'=>false,//https://www.w3.org/TR/CSS2/media.html#media-types
-//                ],
+                [
+                    'src'=>'/css/style.css',
+                    'deps'=>null,
+                    'ver'=>null,
+                    'media'=>false,//https://www.w3.org/TR/CSS2/media.html#media-types
+                    'external_link'=>false
+                ],
+              
+                [
+                    'src'=>'https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap',
+                    'deps'=>null,
+                    'ver'=>null,
+                    'media'=>false,//https://www.w3.org/TR/CSS2/media.html#media-types
+                    'external_link'=>true
+                ],
             ],
     ];
