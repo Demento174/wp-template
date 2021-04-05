@@ -62,7 +62,7 @@ class RegisterScriptsAndStyle{
 
                 $this->register_script(
                     $this->set_script_or_style_title($item['src']),
-                    $this->folder.$item['src'],
+                    !$item['external_link']?$this->folder.$item['src']:$item['src'],
                     isset($item['deps'])?$item['deps']:null,
                     isset($item['ver'])?$item['ver']:null,
                     isset($item['in_footer'])?$item['in_footer']:null
@@ -72,7 +72,7 @@ class RegisterScriptsAndStyle{
 
                 $this->register_style(
                     $this->set_script_or_style_title($item['src']),
-                    $this->folder.$item['src'],
+                    !$item['external_link']?$this->folder.$item['src']:$item['src'],
                     isset($item['deps'])?$item['deps']:null,
                     isset($item['ver'])?$item['ver']:null,
                     isset($item['media'])?$item['media']:null
